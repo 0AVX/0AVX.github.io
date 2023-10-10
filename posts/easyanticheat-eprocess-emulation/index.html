@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>The Unseen Guardian: EasyAntiCheat’s EProcess Emulation :: AVX&#39;s Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Prepare to be astonished as we delve deep into the enigmatic world of EasyAntiCheat, where a hidden strategy has been silently at work, right under our noses. In this gripping article, we uncover the captivating tale of how EasyAntiCheat has ingeniously emulated crucial functions, becoming the clandestine guardian against cheating in online gaming." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="/posts/easyanticheat-eprocess-emulation/" />
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="/img/theme-colors/pink.png">
+  <link rel="apple-touch-icon" href="/img/theme-colors/pink.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The Unseen Guardian: EasyAntiCheat’s EProcess Emulation">
+<meta property="og:description" content="Prepare to be astonished as we delve deep into the enigmatic world of EasyAntiCheat, where a hidden strategy has been silently at work, right under our noses. In this gripping article, we uncover the captivating tale of how EasyAntiCheat has ingeniously emulated crucial functions, becoming the clandestine guardian against cheating in online gaming." />
+<meta property="og:url" content="/posts/easyanticheat-eprocess-emulation/" />
+<meta property="og:site_name" content="AVX&#39;s Blog" />
+
+  
+    <meta property="og:image" content="/img/favicon/pink.png">
+  
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2023-07-06 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="pink">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    AVX&#39;s Blog
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="/posts/easyanticheat-eprocess-emulation/">The Unseen Guardian: EasyAntiCheat’s EProcess Emulation</a>
+  </h1>
+  <div class="post-meta">
+    
+      <time class="post-date">
+        2023-07-06 ::
+        
+      </time>
+    
+    
+      <span class="post-author">AVX</span>
+    
+    
+  </div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="disclaimer">Disclaimer<a href="#disclaimer" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>The information provided in this document is intended <strong>solely for educational and informational purposes</strong>. It is <strong>not meant to belittle EasyAntiCheat</strong> or any individuals involved in its development or implementation. Rather, it aims to shed light on the internal workings of EasyAntiCheat so that consumers can better understand what happens behind the scenes when playing their favorite games. Any opinions expressed herein <strong>do not necessarily reflect those of EasyAntiCheat</strong> or any other parties mentioned. This document is provided &ldquo;<strong>as is</strong>&rdquo; without warranty of any kind, either express or implied, including but not limited to the implied warranties of merchantability and fitness for a particular purpose. I shall not be liable for any damages whatsoever arising out of or in connection with the use of this document.</p>
+<h1 id="introduction">Introduction<a href="#introduction" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In a world where virtual battlegrounds have become the arena for fierce competition, cheaters threaten to undermine the very foundations of fair play. But what if the key to safeguarding the integrity of online gaming lies in an elusive strategy, cleverly concealed from prying eyes? Enter EasyAntiCheat, the silent sentinel dedicated to preserving the sanctity of gaming realms.</p>
+<p>As we dive into the depths of this captivating tale, we uncover a hidden gem that unfolds like a thrilling detective novel. Beneath the surface of EasyAntiCheat&rsquo;s armor, a remarkable methodology emerges—one that involves the cunning emulation of <code>NtCreateUserProcess</code>, subtly controlling the very essence of construction within the gaming universe.</p>
+<h1 id="before-we-dive-in-getting-the-basics-right">Before We Dive In: Getting the Basics Right<a href="#before-we-dive-in-getting-the-basics-right" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>To proceed with the remaining part of the article, I recommend first addressing these topics:</p>
+<ul>
+<li><a href="https://advancedvectorextensions.github.io/posts/easyanticheat-cr3-protection/">EasyAntiCheat&rsquo;s CR3 Protection</a></li>
+<li><a href="https://www.youtube.com/watch?v=DRH0oRFwFiM">Virtualization-Based Obfuscators</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/eprocess">Windows Kernel Opaque Structures</a></li>
+</ul>
+<h1 id="the-problem">The Problem<a href="#the-problem" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In the past, it was possible to register a process creation callback and obtain the game&rsquo;s real <code>CR3</code> before EasyAntiCheat modified it. However, little did we know that a significant change was about to take place.</p>
+<p>As I was going about my daily routine, a message from my friend popped up on Discord, stating that his cheat was no longer functional. The reason behind this sudden disruption? Registering a process creation callback now yielded an incorrect <code>CR3</code>.</p>
+<p>Naturally, I couldn&rsquo;t let this revelation pass without verifying it firsthand. Intrigued and determined, I embarked on a mission to uncover the truth.</p>
+<p><img src="https://i.imgur.com/db1KvTC.png" alt=""></p>
+<p>Before diving deep, and to get a rough idea of what they were doing, I installed a hook on <code>PspInsertProcess</code> to see if the <code>CR3</code> had been altered. To my surprise, it had been!</p>
+<p>This was quite odd because there were no easy hook points in <code>PspAllocateProcess</code> without installing a hook that was local to the game&rsquo;s launcher process, which required doing trickery with the <code>PFN</code>, and is rather a versatile approach.</p>
+<p>But, more importantly, what does this change mean? Well, it simply means that either scanning for the <code>CR3</code> or decrypting it is now required.</p>
+<h1 id="the-interrogation-who-dares-touch-the-eprocess">The Interrogation: Who Dares Touch the EProcess?<a href="#the-interrogation-who-dares-touch-the-eprocess" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>To initiate my reversing process, I needed to obtain access to the <code>EProcess</code> allocation before EasyAntiCheat made any modifications to it.</p>
+<p>During my investigation of the <code>PspAllocateProcess</code> function in search of a convenient hook point, I stumbled upon the <code>PspInitializeProcessLock</code> function, which proved to be relatively simple to re-implement.</p>
+<p><img src="https://i.imgur.com/hYcJUxw.png" alt=""></p>
+<blockquote>
+<p>While I could&rsquo;ve hooked another function, this function didn&rsquo;t require using a trampoline.</p>
+</blockquote>
+<p>If we delve deeper into the allocation function, we encounter a function named <code>MmCreateProcessAddressSpace</code>, which is responsible for writing to the process&rsquo; <code>CR3</code>.</p>
+<p><img src="https://i.imgur.com/RMy5hRd.png" alt=""></p>
+<p>So, by understanding where the <code>CR3</code> is written, we can determine if it is intercepted by EasyAntiCheat, and not written by the original location.</p>
+<p>To accomplish this, I decided to utilize my hypervisor and set an <code>EPT</code> breakpoint on the page that contained the <code>EProcess</code>.</p>
+<p>Considering that the function was likely to be called from within the launcher&rsquo;s context, I simply compared the name to the launcher&rsquo;s name for verification.</p>
+<p><img src="https://i.imgur.com/63FIn9n.png" alt=""></p>
+<p>Since the <code>EProcess</code> might not be allocated on a page boundary, I saved the address and checked if the violation occurred within the specified range.</p>
+<p><img src="https://i.imgur.com/KXGFD5c.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;Rva&#34;</span>:<span style="color:#e6db74">&#34;0x58233A&#34;</span>, <span style="color:#f92672">&#34;Rbp&#34;</span>: <span style="color:#e6db74">&#34;0x4000000853FFF000&#34;</span>, <span style="color:#960050;background-color:#1e0010">...Other</span> <span style="color:#960050;background-color:#1e0010">Registers...</span> }
+</span></span></code></pre></div><p>Now, as you can clearly observe, this is precisely where EasyAntiCheat is writing their manipulated <code>CR3</code> value to the <code>EProcess</code>.</p>
+<p><img src="https://i.imgur.com/Mjh781a.png" alt=""></p>
+<p>Unfortunately, but not surprisingly, the routine responsible for writing the <code>CR3</code> is virtualized.</p>
+<p>Instead of investing time and effort into tracing and lifting the VM, an alternative approach would be to search for other sections of code that are not virtualized.</p>
+<p>However, it&rsquo;s crucial to remember and keep track of the mentioned piece of code, as it holds significance for future stages.</p>
+<h1 id="the-interrogation-the-search-party">The Interrogation: The Search Party<a href="#the-interrogation-the-search-party" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>As we are aware from the previous section, EasyAntiCheat is somehow intercepting the <code>PspAllocateProcess</code> function and modifying the <code>CR3</code> very early on in the process.</p>
+<p>Considering this information, it is not far-fetched to speculate that they may also be writing to the other components? To confirm this, I removed the offset check, and logged every write to the <code>EProcess</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;Rva&#34;</span>:<span style="color:#e6db74">&#34;0x42106&#34;</span>, <span style="color:#f92672">&#34;Offset&#34;</span>:<span style="color:#e6db74">&#34;0x5E8&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;Rva&#34;</span>:<span style="color:#e6db74">&#34;0x42106&#34;</span>, <span style="color:#f92672">&#34;Offset&#34;</span>:<span style="color:#e6db74">&#34;0x5E0&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;Rva&#34;</span>:<span style="color:#e6db74">&#34;0x42106&#34;</span>, <span style="color:#f92672">&#34;Offset&#34;</span>:<span style="color:#e6db74">&#34;0x8A8&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;Rva&#34;</span>:<span style="color:#e6db74">&#34;0x42106&#34;</span>, <span style="color:#f92672">&#34;Offset&#34;</span>:<span style="color:#e6db74">&#34;0x8A0&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;Rva&#34;</span>:<span style="color:#e6db74">&#34;0x42106&#34;</span>, <span style="color:#f92672">&#34;Offset&#34;</span>:<span style="color:#e6db74">&#34;0x998&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;Rva&#34;</span>:<span style="color:#e6db74">&#34;0x42106&#34;</span>, <span style="color:#f92672">&#34;Offset&#34;</span>:<span style="color:#e6db74">&#34;0x990&#34;</span> }
+</span></span></code></pre></div><blockquote>
+<p>This log was quite a big bigger, but I stripped it down for clarity&rsquo;s sake.</p>
+</blockquote>
+<p>After following the Rva, I was introduced with a wonderful looking switch case.</p>
+<p><img src="https://i.imgur.com/GmyyqmN.png" alt=""></p>
+<p>Now, when examining this, what does it appear to be? Well, to me, it resembles some kind of function for writing to registers.</p>
+<p>To further validate my suspicions, I logged the return address and proceeded to track its path.</p>
+<p><img src="https://i.imgur.com/PSzWLFJ.png" alt=""></p>
+<p><img src="https://i.imgur.com/o8kkNha.png" alt=""></p>
+<p>Well, this turned out to be a highly successful endeavor, as upon further exploration of the function, it became apparent that it was in fact a CPU emulator!</p>
+<p><img src="https://i.imgur.com/TZ6Hi7Z.png" alt=""></p>
+<p><img src="https://i.imgur.com/GjZfcxD.png" alt=""></p>
+<p>Indeed, now everything falls into place. It appears that they were emulating the <code>EProcess</code> construction process and manipulating the <code>CR3</code> write through their emulation engine. This explains how EasyAntiCheat was able to intercept and modify the <code>CR3</code> value at such an early stage.</p>
+<h1 id="the-interrogation-the-operator">The Interrogation: The Operator<a href="#the-interrogation-the-operator" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Driven by my curiosity, I persisted in tracing the return stack as I was eager to uncover the exact workings of this emulation engine, and who dared to operate it.</p>
+<p><img src="https://i.imgur.com/f77zXwi.png" alt=""></p>
+<p><img src="https://i.imgur.com/STyhKlO.png" alt=""></p>
+<p>I understand that the code may appear obfuscated, but rest assured, it holds valuable significance for our investigation.</p>
+<p>As you may have already deduced, this is, in fact, a handler within their VM, which I have identified as <code>BRANCHCALL</code>.</p>
+<p>Let&rsquo;s begin by tracing the branch that is executed when the emulation succeeds, which has the offset <code>0xFFFFFFFFF844BC37</code>.</p>
+<p><img src="https://i.imgur.com/Uku8hDb.png" alt=""></p>
+<blockquote>
+<p>This is known as the dispatcher, which the handler uses to dispatch control flow.</p>
+</blockquote>
+<p>It seems relatively straightforward. By adding both constants together, we obtain another branch, which leads to an <code>EXIT</code> handler.</p>
+<p><img src="https://i.imgur.com/O6tVajD.png" alt=""></p>
+<p>In the other branch, which is executed when the emulation is not completed, the code continues the loop and proceeds with further emulation.</p>
+<h1 id="the-interrogation-stealing-the-flow">The Interrogation: Stealing the Flow<a href="#the-interrogation-stealing-the-flow" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>To determine the starting and ending points of the emulation process, I referred to my reliable hypervisor and hooked the <code>BRANCHCALL</code> handler.</p>
+<p><img src="https://i.imgur.com/Rs2MYmc.png" alt=""></p>
+<blockquote>
+<p>These offsets were gathered by inspecting the assembly in the handler, and are relative to the VM.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF80681274376&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF80681274379&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF8068127437E&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF80681274385&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF80681274387&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF80681274389&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF8068127438B&#34;</span> } 
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF8068127438D&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF8068127438E&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF8068127438F&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF80681274390&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0xFFFFF80681274391&#34;</span> }
+</span></span><span style="display:flex;"><span>{ <span style="color:#f92672">&#34;vRip&#34;</span>:<span style="color:#e6db74">&#34;0x0000000000000000&#34;</span> }
+</span></span></code></pre></div><blockquote>
+<p>This log was quite a big bigger, but I stripped it down for clarity&rsquo;s sake.</p>
+</blockquote>
+<p>They were actually emulating even further back than I initially suspected. From analyzing my log, it became apparent that they were emulating <code>NtCreateUserProcess</code>!</p>
+<p>To halt the emulation engine at the end of the function, they set the return address to <code>NULL</code>, effectively stopping the emulation process.</p>
+<h1 id="the-interrogation-the-backbone">The Interrogation: The Backbone<a href="#the-interrogation-the-backbone" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>Remember those random function pointers in the emulator&rsquo;s context? Well, they&rsquo;re not so random afterall, and are actually the backbone of this entire process.</p>
+<p>Let&rsquo;s start with analyzing this one, which lives at the top of the emulator&rsquo;s function.</p>
+<p><img src="https://i.imgur.com/sLuAswx.png" alt=""></p>
+<p><img src="https://i.imgur.com/kveRWUS.png" alt=""></p>
+<p>Well, isn&rsquo;t that something! Now the puzzle is starting to come together, as that particular <code>QWORD</code> is actually the address of the instruction responsible for writing the <code>CR3</code> value, which we found in <code>MmCreateProcessAddressSpace</code>.</p>
+<p>To add the final touch, that function is even the virtualized function that performed the write operation on the <code>CR3</code>, which we traced in the previous sections.</p>
+<p>Even after all of this, the question still remains: are they truly emulating every single call within <code>NtCreateUserProcess</code>?</p>
+<p>After looking at the rest of the emulator&rsquo;s code, I discovered the section that handles the execution or emulation of subroutines.</p>
+<p><img src="https://i.imgur.com/0DabId3.png" alt=""></p>
+<p><img src="https://i.imgur.com/3isRzQ3.png" alt=""></p>
+<p>The callback itself is quite straightforward and simply emulates the code if the function leads to <code>MmCreateProcessAddressSpace</code>.</p>
+<p><img src="https://i.imgur.com/C8tfwM9.png" alt=""></p>
+<h1 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>In conclusion, EasyAntiCheat has opened up a Pandora&rsquo;s box that they cannot close. They have revealed their capabilities, and there is so much more they can unleash.</p>
+<p>I eagerly am waiting to document any future developments that EasyAntiCheat introduces.</p>
+<p>Until the next revelation!</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/posts/easyanticheat-import-protection/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Dethroning the Jungle King: EasyAntiCheat&#39;s Import Protection</span>
+            </a>
+        </span>
+        
+        
+        <span class="button next">
+            <a href="/posts/easyanticheat-cr3-protection/">
+                <span class="button__text">Unleashing the Secrets: EasyAntiCheat’s CR3 Protection</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2023 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
